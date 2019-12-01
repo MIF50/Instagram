@@ -12,4 +12,5 @@
     <color name="greyLight">#AAAAAA</color>
     <color name="red">#D0021B</color>
     <color name="white">#ffffff</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

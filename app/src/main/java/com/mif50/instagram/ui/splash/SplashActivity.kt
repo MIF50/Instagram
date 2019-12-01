@@ -9,14 +9,14 @@ import com.mif50.instagram.di.component.ActivityComponent
 import com.mif50.instagram.ui.base.BaseActivity
 import com.mif50.instagram.ui.login.LoginActivity
 import com.mif50.instagram.utils.common.Event
+import com.mif50.instagram.utils.common.LayoutRes
 
+@LayoutRes(layout = R.layout.activity_splash)
 class SplashActivity : BaseActivity<SplashViewModel>() {
 
     companion object {
         const val TAG = "SplashActivity"
     }
-
-    override fun provideLayoutId(): Int = R.layout.activity_splash
 
     override fun injectDependencies(activityComponent: ActivityComponent) {
         activityComponent.inject(this)

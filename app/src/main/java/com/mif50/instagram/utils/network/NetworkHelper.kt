@@ -1,12 +1,13 @@
 package com.mif50.instagram.utils.network
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
+import com.mif50.instagram.utils.ktx.moreOrEqualAndroid10
 import com.mif50.instagram.utils.log.Logger
 import java.io.IOException
 import java.net.ConnectException
@@ -27,11 +28,12 @@ class NetworkHelper constructor(private val context: Context) {
 //    }
 
 
+    @SuppressLint("NewApi")
     fun isNetworkConnected(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
 
         if (connectivityManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (moreOrEqualAndroid10) {
                 val capabilities =
                     connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
                 if (capabilities != null) {

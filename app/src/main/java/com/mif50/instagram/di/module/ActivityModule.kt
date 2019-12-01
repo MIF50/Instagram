@@ -7,7 +7,9 @@ import com.mif50.instagram.data.repository.UserRepository
 import com.mif50.instagram.ui.base.BaseActivity
 import com.mif50.instagram.ui.dummy.DummyViewModel
 import com.mif50.instagram.ui.login.LoginViewModel
+import com.mif50.instagram.ui.main.MainSharedViewModel
 import com.mif50.instagram.ui.main.MainViewModel
+import com.mif50.instagram.ui.profile.edit.EditProfileViewModel
 import com.mif50.instagram.ui.register.SignUpViewModel
 import com.mif50.instagram.ui.splash.SplashViewModel
 import com.mif50.instagram.utils.ViewModelProviderFactory
@@ -82,4 +84,25 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         activity, ViewModelProviderFactory(MainViewModel::class) {
             MainViewModel(schedulerProvider, compositeDisposable, networkHelper)
         }).get(MainViewModel::class.java)
+
+
+    @Provides
+    fun provideEditProfileViewModel(
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable,
+        networkHelper: NetworkHelper
+    ): EditProfileViewModel = ViewModelProviders.of(
+        activity, ViewModelProviderFactory(EditProfileViewModel::class) {
+            EditProfileViewModel(schedulerProvider, compositeDisposable, networkHelper)
+        }).get(EditProfileViewModel::class.java)
+
+    @Provides
+    fun provideMainSharedViewModel(
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable,
+        networkHelper: NetworkHelper
+    ): MainSharedViewModel = ViewModelProviders.of(
+        activity, ViewModelProviderFactory(MainSharedViewModel::class) {
+            MainSharedViewModel(schedulerProvider, compositeDisposable, networkHelper)
+        }).get(MainSharedViewModel::class.java)
 }

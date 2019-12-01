@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mif50.instagram.R
 import com.mif50.instagram.di.component.FragmentComponent
 import com.mif50.instagram.ui.base.BaseFragment
+import com.mif50.instagram.utils.common.LayoutRes
 import kotlinx.android.synthetic.main.fragment_dummies.*
 import javax.inject.Inject
 
+@LayoutRes(layout = R.layout.fragment_dummies)
 class DummiesFragment : BaseFragment<DummiesViewModel>() {
 
     companion object {
@@ -32,7 +34,6 @@ class DummiesFragment : BaseFragment<DummiesViewModel>() {
     @Inject
     lateinit var dummiesAdapter: DummiesAdapter
 
-    override fun provideLayoutId(): Int = R.layout.fragment_dummies
 
     override fun injectDependencies(fragmentComponent: FragmentComponent) {
         fragmentComponent.inject(this)

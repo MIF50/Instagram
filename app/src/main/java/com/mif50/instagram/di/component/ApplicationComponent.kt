@@ -8,11 +8,13 @@ import com.mif50.instagram.data.local.db.DatabaseService
 import com.mif50.instagram.data.remote.NetworkService
 import com.mif50.instagram.data.repository.UserRepository
 import com.mif50.instagram.di.ApplicationContext
+import com.mif50.instagram.di.TempDirectory
 import com.mif50.instagram.di.module.ApplicationModule
 import com.mif50.instagram.utils.network.NetworkHelper
 import com.mif50.instagram.utils.rx.SchedulerProvider
 import dagger.Component
 import io.reactivex.disposables.CompositeDisposable
+import java.io.File
 import javax.inject.Singleton
 
 @Singleton
@@ -57,4 +59,7 @@ interface ApplicationComponent {
     fun getSchedulerProvider(): SchedulerProvider
 
     fun getCompositeDisposable(): CompositeDisposable
+
+    @TempDirectory
+    fun getTempDirectory(): File
 }

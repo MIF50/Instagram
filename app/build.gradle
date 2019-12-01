@@ -45,7 +45,7 @@ dependencies {
     implementation "com.google.android.material:material:$support_library_version"
 
     // RecyclerView
-    implementation "androidx.recyclerview:recyclerview:$support_library_version"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     // CardView
     implementation "androidx.cardview:cardview:$support_library_version"
@@ -68,7 +68,7 @@ dependencies {
 
     // Database
 
-    def room_version = '2.2.1'
+    def room_version = '2.2.2'
     def debug_db_version = '1.0.6'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,10 +15,16 @@ import com.mif50.instagram.R
 import com.mif50.instagram.di.component.FragmentComponent
 import com.mif50.instagram.ui.base.BaseFragment
 import com.mif50.instagram.ui.home.posts.PostsAdapter
+import com.mif50.instagram.ui.main.MainSharedViewModel
+import com.mif50.instagram.utils.common.LayoutRes
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
+@LayoutRes(layout = R.layout.fragment_home)
 class HomeFragment : BaseFragment<HomeViewModel>() {
+
+    @Inject
+    lateinit var mainSharedViewModel: MainSharedViewModel
 
     companion object {
         const val TAG = "HomeFragment"
@@ -36,8 +43,6 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     lateinit var postsAdapter: PostsAdapter
 
 
-    override fun provideLayoutId(): Int  = R.layout.fragment_home
-
     override fun injectDependencies(fragmentComponent: FragmentComponent) {
         fragmentComponent.inject(this)
     }
@@ -45,8 +50,23 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     override fun setupObservers() {
         super.setupObservers()
 
-        viewModel.posts.observe(this,androidx.lifecycle.Observer {
+        viewModel.loading.observe(this, Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
+        viewModel.posts.observe(this, Observer {
             it.data?.run { postsAdapter.appendData(this) }
+        })
+
+        mainSharedViewModel.newPost.observe(this, Observer {
+            it.getIfNotHandled()?.run { viewModel.onNewPost(this) }
+        })
+
+        viewModel.refreshPosts.observe(this, Observer {
+            it.data?.run {
+                postsAdapter.updateList(this)
+                rvPosts.scrollToPosition(0)
+            }
         })
     }
 

@@ -9,17 +9,21 @@ import com.mif50.instagram.ui.base.BaseActivity
 import com.mif50.instagram.ui.home.HomeFragment
 import com.mif50.instagram.ui.photo.PhotoFragment
 import com.mif50.instagram.ui.profile.ProfileFragment
+import com.mif50.instagram.utils.common.LayoutRes
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
+@LayoutRes(layout = R.layout.activity_main)
 class MainActivity : BaseActivity<MainViewModel>() {
+
+    @Inject
+    lateinit var mainSharedViewModel: MainSharedViewModel
 
     companion object {
         const val TAG = "MainActivity"
     }
 
     private var activityFragment: Fragment? = null
-
-    override fun provideLayoutId(): Int = R.layout.activity_main
 
     override fun injectDependencies(activityComponent: ActivityComponent) {
         activityComponent.inject(this)
@@ -61,6 +65,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
         viewModel.photoNavigation.observe(this, Observer {
             it.getIfNotHandled()?.run { showAddPhoto() }
+        })
+
+        mainSharedViewModel.homeRedirection.observe(this, Observer {
+            it.getIfNotHandled()?.run { bottomNavigation.selectedItemId = R.id.itemHome }
         })
 
     }

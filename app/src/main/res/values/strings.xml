@@ -38,4 +38,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_profile_text">Edit Profile</string>
+    <string name="change_photo_text">Change Photo</string>
+    <string name="name_text">Name</string>
+    <string name="bio_text">Bio</string>
+    <string name="private_information_text">Private information</string>
+    <string name="email_address_text">Email Address</string>
+    <string name="logout_text">Logout</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="try_again">please try again</string>
 </resources>

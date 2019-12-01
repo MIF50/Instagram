@@ -13,6 +13,7 @@ import com.mif50.instagram.di.component.DaggerFragmentComponent
 import com.mif50.instagram.di.component.FragmentComponent
 import com.mif50.instagram.di.module.FragmentModule
 import com.mif50.instagram.utils.display.Toaster
+import com.mif50.instagram.utils.ktx.getLayoutRes
 import javax.inject.Inject
 
 /**
@@ -40,7 +41,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(provideLayoutId(), container, false)
+        inflater.inflate(getLayoutRes().layout, container, false)
 
     protected open fun setupObservers() {
         viewModel.messageString.observe(this, Observer {
@@ -66,8 +67,6 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
         if (activity is BaseActivity<*>) (activity as BaseActivity<*>).goBack()
     }
 
-    @LayoutRes
-    protected abstract fun provideLayoutId(): Int
 
     protected abstract fun injectDependencies(fragmentComponent: FragmentComponent)
 

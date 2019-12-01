@@ -10,6 +10,8 @@ import com.mif50.instagram.data.local.db.DatabaseService
 import com.mif50.instagram.data.remote.NetworkService
 import com.mif50.instagram.data.remote.Networking
 import com.mif50.instagram.di.ApplicationContext
+import com.mif50.instagram.di.TempDirectory
+import com.mif50.instagram.utils.common.FileUtils
 import com.mif50.instagram.utils.network.NetworkHelper
 import com.mif50.instagram.utils.rx.RxSchedulerProvider
 import com.mif50.instagram.utils.rx.SchedulerProvider
@@ -44,6 +46,11 @@ class ApplicationModule(private val application: App) {
     @Singleton
     fun provideSharedPreferences(): SharedPreferences =
         application.getSharedPreferences("bootcamp-instagram-project-prefs", Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    @TempDirectory
+    fun provideTempDirectory() = FileUtils.getDirectory(application, "temp")
 
     /**
      * We need to write @Singleton on the provide method if we are create the instance inside this method

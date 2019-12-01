@@ -1,7 +1,6 @@
 package com.mif50.instagram.ui.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,6 +9,7 @@ import com.mif50.instagram.di.component.ActivityComponent
 import com.mif50.instagram.di.component.DaggerActivityComponent
 import com.mif50.instagram.di.module.ActivityModule
 import com.mif50.instagram.utils.display.Toaster
+import com.mif50.instagram.utils.ktx.getLayoutRes
 import javax.inject.Inject
 
 /**
@@ -24,7 +24,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies(buildActivityComponent())
         super.onCreate(savedInstanceState)
-        setContentView(provideLayoutId())
+        setContentView(getLayoutRes().layout)
         setupObservers()
         setupView(savedInstanceState)
         viewModel.onCreate()
@@ -59,8 +59,6 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
         else super.onBackPressed()
     }
 
-    @LayoutRes
-    protected abstract fun provideLayoutId(): Int
 
     protected abstract fun injectDependencies(activityComponent: ActivityComponent)
 

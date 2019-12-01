@@ -9,19 +9,19 @@ import com.mif50.instagram.di.component.ActivityComponent
 import com.mif50.instagram.ui.base.BaseActivity
 import com.mif50.instagram.ui.register.SignUpActivity
 import com.mif50.instagram.utils.common.Event
+import com.mif50.instagram.utils.common.LayoutRes
 import com.mif50.instagram.utils.common.Status
 import com.mif50.instagram.utils.view.getString
 import com.mif50.instagram.utils.view.setupTextWatch
 import com.mif50.instagram.utils.view.toggleVisibility
 import kotlinx.android.synthetic.main.activity_login.*
 
+@LayoutRes(layout = R.layout.activity_login)
 class LoginActivity : BaseActivity<LoginViewModel>() {
 
     companion object {
         const val TAG = "LoginActivity"
     }
-
-    override fun provideLayoutId(): Int = R.layout.activity_login
 
     override fun injectDependencies(activityComponent: ActivityComponent) =
         activityComponent.inject(this)
