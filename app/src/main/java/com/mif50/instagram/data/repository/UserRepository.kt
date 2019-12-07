@@ -6,6 +6,7 @@ import com.mif50.instagram.data.model.User
 import com.mif50.instagram.data.remote.NetworkService
 import com.mif50.instagram.data.remote.request.LoginRequest
 import com.mif50.instagram.data.remote.request.SignUpRequest
+import com.mif50.instagram.data.remote.response.LogoutResponse
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -58,8 +59,13 @@ class UserRepository @Inject constructor(
 
 
     fun doUserSignUp(fullName: String, email: String, password: String): Single<User> =
-        networkService.doSingUpCall(SignUpRequest(name = fullName,email = email, password = password))
-            .map {
+        networkService.doSingUpCall(
+            SignUpRequest(
+                name = fullName,
+                email = email,
+                password = password
+            )
+        ).map {
                 User(
                     it.userId,
                     it.userName,
@@ -68,5 +74,13 @@ class UserRepository @Inject constructor(
                     ""
                 )
             }
+
+
+    fun doUserLogout(user: User):Single<LogoutResponse> {
+        return networkService.doLogoutCall(
+            userId = user.id,
+            accessToken =  user.accessToken
+        )
+    }
 
 }

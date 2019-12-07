@@ -29,18 +29,21 @@ interface NetworkService {
         ): Single<DummyResponse>
      */
 
+    //TODO:-  Login Api
     @POST(Endpoints.LOGIN)
     fun doLoginCall(
         @Body request: LoginRequest,
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<LoginResponse>
 
+    //TODO:- sign up Api
     @POST(Endpoints.SIGN_UP)
     fun doSingUpCall(
         @Body request: SignUpRequest,
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<SignUpResponse>
 
+    // TODO:- home post list Api
     @GET(Endpoints.HOME_POSTS_LIST)
     fun doHomePostListCall(
         @Query("firstPostId") firstPostId: String?,
@@ -50,6 +53,8 @@ interface NetworkService {
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<PostListResponse>
 
+
+    // TODO:- post like Api
     @PUT(Endpoints.POST_LIKE)
     fun doPostLikeCall(
         @Body request: PostLikeModifyRequest,
@@ -58,6 +63,8 @@ interface NetworkService {
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<GeneralResponse>
 
+
+    //TODO:- Post UnLike Api
     @PUT(Endpoints.POST_UNLIKE)
     fun doPostUnlikeCall(
         @Body request: PostLikeModifyRequest,
@@ -67,6 +74,7 @@ interface NetworkService {
     ): Single<GeneralResponse>
 
 
+    // TODO:- Upload Image Api
     @Multipart
     @POST(Endpoints.UPLOAD_IMAGE)
     fun doImageUpload(
@@ -76,6 +84,8 @@ interface NetworkService {
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<ImageResponse>
 
+
+    // TODO:- create post Api
     @POST(Endpoints.CREATE_POST)
     fun doPostCreationCall(
         @Body request: PostCreationRequest,
@@ -83,4 +93,13 @@ interface NetworkService {
         @Header(Networking.HEADER_ACCESS_TOKEN) accessToken: String,
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ): Single<PostCreationResponse>
+
+
+    //TODO:- logout Api
+    @DELETE(Endpoints.LOGOUT)
+    fun doLogoutCall(
+        @Header(Networking.HEADER_USER_ID) userId: String,
+        @Header(Networking.HEADER_ACCESS_TOKEN) accessToken: String,
+        @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
+    ) : Single<LogoutResponse>
 }
