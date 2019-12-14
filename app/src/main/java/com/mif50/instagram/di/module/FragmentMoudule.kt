@@ -2,10 +2,7 @@ package com.mif50.instagram.di.module
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mif50.instagram.data.repository.DummyRepository
-import com.mif50.instagram.data.repository.PhotoRepository
-import com.mif50.instagram.data.repository.PostRepository
-import com.mif50.instagram.data.repository.UserRepository
+import com.mif50.instagram.data.repository.*
 import com.mif50.instagram.di.TempDirectory
 import com.mif50.instagram.ui.base.BaseFragment
 import com.mif50.instagram.ui.dummies.DummiesAdapter
@@ -77,10 +74,17 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        fetchInfoRepository: FetchInfoRepository
     ): ProfileViewModel = ViewModelProviders.of(
         fragment, ViewModelProviderFactory(ProfileViewModel::class) {
-            ProfileViewModel(schedulerProvider, compositeDisposable, networkHelper,userRepository)
+            ProfileViewModel(
+                schedulerProvider,
+                compositeDisposable,
+                networkHelper,
+                userRepository,
+                fetchInfoRepository
+            )
         }).get(ProfileViewModel::class.java)
 //
 

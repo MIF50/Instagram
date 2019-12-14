@@ -11,6 +11,7 @@ import com.mif50.instagram.ui.login.LoginActivity
 import com.mif50.instagram.ui.profile.edit.EditProfileActivity
 import com.mif50.instagram.utils.common.LayoutRes
 import com.mif50.instagram.utils.ktx.startActivity
+import com.mif50.instagram.utils.log.Logger
 import com.mif50.instagram.utils.view.toggleVisibility
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -47,6 +48,13 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
         viewModel.launchLoginScreen.observe(this, Observer {
             it.getIfNotHandled()?.run {
                 activity?.startActivity<LoginActivity>()
+            }
+        })
+
+        viewModel.infoLiveData.observe(this, Observer {
+            it.data?.run {
+                Logger.d(TAG, it.toString())
+                tvTitle.text = it.data.name
             }
         })
 

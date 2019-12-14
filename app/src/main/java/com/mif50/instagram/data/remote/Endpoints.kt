@@ -12,4 +12,5 @@ object Endpoints {
     const val CREATE_POST = "instagram/post"
 
     const val LOGOUT ="logout"
+    const val FETCH_MY_INFO = "me"
 }

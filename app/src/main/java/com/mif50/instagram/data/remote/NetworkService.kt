@@ -102,4 +102,12 @@ interface NetworkService {
         @Header(Networking.HEADER_ACCESS_TOKEN) accessToken: String,
         @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
     ) : Single<LogoutResponse>
+
+    //TODO:- fetch my info
+    @GET(Endpoints.FETCH_MY_INFO)
+    fun doFetchInfoCall (
+        @Header(Networking.HEADER_USER_ID) userId: String,
+        @Header(Networking.HEADER_ACCESS_TOKEN) accessToken: String,
+        @Header(Networking.HEADER_API_KEY) apiKey: String = Networking.API_KEY
+    ): Single<InfoResponse>
 }

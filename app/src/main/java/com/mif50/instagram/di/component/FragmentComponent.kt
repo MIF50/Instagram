@@ -16,10 +16,10 @@ import dagger.Component
 interface FragmentComponent {
 
     fun inject(fragment: DummiesFragment)
-//
+
     fun inject(fragment: HomeFragment)
-//
+
     fun inject(fragment: PhotoFragment)
-//
+
     fun inject(fragment: ProfileFragment)
 }
