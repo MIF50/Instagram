@@ -49,7 +49,7 @@ class PostItemViewHolder (parent: ViewGroup):
                     .apply(RequestOptions.circleCropTransform())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_profile_selected))
 
-                if (placeholderHeight > 0 && placeholderHeight > 0) {
+                if (placeholderWidth > 0 && placeholderHeight > 0) {
                     val params = itemView.ivProfile.layoutParams as ViewGroup.LayoutParams
                     params.width = placeholderWidth
                     params.height = placeholderHeight

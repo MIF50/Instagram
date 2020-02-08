@@ -37,7 +37,7 @@ class PostRepository @Inject constructor(
             )
             .map {
                 post.likedBy?.apply {
-                    this.find {postUser -> postUser.id == user.id  } ?: this.add(
+                    this.find { postUser -> postUser.id == user.id  } ?: this.add(
                         Post.User(
                             user.id,
                             user.name,

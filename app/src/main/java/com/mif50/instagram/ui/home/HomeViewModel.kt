@@ -34,6 +34,17 @@ class HomeViewModel (
     private val user: User = userRepository.getCurrentUser()!! // should not be used without login
 
     init {
+        //TODO: onBackPressureDrop()
+
+        // when downStream not ready to receive element
+        // onBackPressureDrop() to drop the element from the sequence
+
+        //TODO: contactMap
+
+        // whenever a new item is emitted by the source observable, it will unsubscribe to and stop mirroring the observable that was generated
+        // form the previously emitted item, and begin only mirroring the current one
+        // contactMap the same flatMap but
+        // contactMap has one big flow it waits for itch observable to finish all the work unit next one is processed
 
         compositeDisposable.add(
             paginator
@@ -41,7 +52,7 @@ class HomeViewModel (
                 .doOnNext {
                     loading.postValue(true)
                 }
-                .concatMapSingle {pageIds ->
+                .concatMapSingle { pageIds ->
                     return@concatMapSingle  postRepository
                         .fetchHomePostList(pageIds.first, pageIds.second, user)
                         .subscribeOn(Schedulers.io())
@@ -74,12 +85,7 @@ class HomeViewModel (
     }
 
     private fun loadMorePosts() {
-//        val firstPostId = if (allPostList.isNotEmpty()) allPostList[0].id else null
-//        val lastPostId = if (allPostList.count() > 1) allPostList[allPostList.count() -1].id else null
-//        if (checkInternetConnectionWithMessage()) paginator.onNext(Pair(firstPostId,lastPostId))
-
         if (checkInternetConnectionWithMessage()) paginator.onNext(Pair(firstId, lastId))
-
     }
 
     fun onLoadMore() {

@@ -66,9 +66,7 @@ class PostItemViewModel @Inject constructor(
     private fun calculateScaleFactor(post: Post) = post.imageWidth?.let { return@let screenWidth.toFloat() / it } ?: 1f
 
 
-    override fun onCreate() {
-
-    }
+    override fun onCreate() { }
 
     fun onLikeClick() = data.value?.let {
         if (networkHelper.isNetworkConnected()) {
