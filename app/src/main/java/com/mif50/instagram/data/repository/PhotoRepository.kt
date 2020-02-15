@@ -16,7 +16,9 @@ class PhotoRepository @Inject constructor(private val networkService: NetworkSer
             "image", file.name, RequestBody.create(MediaType.parse("image/*"), file)
         ).run {
             return@run networkService.doImageUpload(this, user.id, user.accessToken)
-                .map { it.data.imageUrl }
+                .map {
+                    it.data.imageUrl
+                }
         }
     }
 }

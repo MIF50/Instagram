@@ -91,7 +91,8 @@ abstract class BaseAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseItemViewM
         val currentCount = itemCount
         if (oldCount == 0 && currentCount > 0)
             notifyDataSetChanged()
-        else if (oldCount > 0 && currentCount > oldCount)
+        // oldCount > 0 && currentCount > oldCount =====  oldCount in 1 until currentCount
+        else if (oldCount in 1 until currentCount)
             notifyItemRangeChanged(oldCount - 1, currentCount - oldCount)
     }
 

@@ -1,16 +1,10 @@
 package com.mif50.instagram.ui.home
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.mif50.instagram.R
 import com.mif50.instagram.di.component.FragmentComponent
 import com.mif50.instagram.ui.base.BaseFragment

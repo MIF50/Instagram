@@ -58,7 +58,11 @@ class PhotoFragment : BaseFragment<PhotoViewModel>() {
     }
 
     override fun setupView(view: View) {
+        takeImageFromGallery()
+        takeImageFromCamera()
+    }
 
+    private fun takeImageFromGallery(){
         view_gallery.setOnClickListener {
             Intent(Intent.ACTION_PICK)
                 .apply {
@@ -67,7 +71,9 @@ class PhotoFragment : BaseFragment<PhotoViewModel>() {
                     startActivityForResult(this, RESULT_GALLERY_IMG)
                 }
         }
+    }
 
+    private fun takeImageFromCamera(){
         view_camera.setOnClickListener {
             Logger.d(tag = TAG,message = "Camera view is tapped")
             try {
@@ -79,7 +85,6 @@ class PhotoFragment : BaseFragment<PhotoViewModel>() {
             }
 
         }
-
     }
 
     override fun onActivityResult(reqCode: Int, resultCode: Int, intent: Intent?) {

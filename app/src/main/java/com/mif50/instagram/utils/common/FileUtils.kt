@@ -37,6 +37,7 @@ object FileUtils {
         }
     }
 
+    // get image size without load file in memory
     fun getImageSize(file: File): Pair<Int, Int>? {
         return try {
             // Decode image size

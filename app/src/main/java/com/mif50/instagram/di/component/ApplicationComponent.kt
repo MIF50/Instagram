@@ -60,6 +60,5 @@ interface ApplicationComponent {
 
     fun getCompositeDisposable(): CompositeDisposable
 
-    @TempDirectory
-    fun getTempDirectory(): File
+    @TempDirectory fun getTempDirectory(): File
 }
