@@ -27,10 +27,8 @@ object Utils {
         fileType: String
     ): File? {
         return try {
-            val file =
-                createDir(context, dirName)
-            val image =
-                File(file.absoluteFile.toString() + File.separator + fileName + fileType)
+            val file = createDir(context, dirName)
+            val image = File(file.absoluteFile.toString() + File.separator + fileName + fileType)
             if (!image.parentFile.exists()) {
                 image.parentFile.mkdirs()
             }
@@ -161,13 +159,11 @@ object Utils {
      * @return
      */
     private fun exifToDegrees(exifOrientation: Int): Int {
-        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
-            return 90
-        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
-            return 180
-        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
-            return 270
+        return when (exifOrientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> 90
+            ExifInterface.ORIENTATION_ROTATE_180 -> 180
+            ExifInterface.ORIENTATION_ROTATE_270 -> 270
+            else -> 0
         }
-        return 0
     }
 }

@@ -1,6 +1,6 @@
 package com.mif50.instagram.di.module
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mif50.instagram.data.repository.DummyRepository
 import com.mif50.instagram.data.repository.UserRepository
@@ -36,7 +36,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
         userRepository: UserRepository
-    ): SplashViewModel = ViewModelProviders.of(
+    ): SplashViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(SplashViewModel::class) {
             SplashViewModel(schedulerProvider, compositeDisposable, networkHelper, userRepository)
             //this lambda creates and return SplashViewModel
@@ -48,7 +48,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
         dummyRepository: DummyRepository
-    ): DummyViewModel = ViewModelProviders.of(
+    ): DummyViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(DummyViewModel::class) {
             DummyViewModel(schedulerProvider, compositeDisposable, networkHelper, dummyRepository)
         }).get(DummyViewModel::class.java)
@@ -59,7 +59,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
         userRepository: UserRepository
-    ): LoginViewModel = ViewModelProviders.of(
+    ): LoginViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(LoginViewModel::class) {
             LoginViewModel(schedulerProvider, compositeDisposable, networkHelper, userRepository)
         }).get(LoginViewModel::class.java)
@@ -70,7 +70,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
         userRepository: UserRepository
-    ): SignUpViewModel = ViewModelProviders.of(
+    ): SignUpViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(SignUpViewModel::class) {
             SignUpViewModel(schedulerProvider, compositeDisposable,networkHelper, userRepository)
         }).get(SignUpViewModel::class.java)
@@ -80,7 +80,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper
-    ): MainViewModel = ViewModelProviders.of(
+    ): MainViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(MainViewModel::class) {
             MainViewModel(schedulerProvider, compositeDisposable, networkHelper)
         }).get(MainViewModel::class.java)
@@ -91,7 +91,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper
-    ): EditProfileViewModel = ViewModelProviders.of(
+    ): EditProfileViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(EditProfileViewModel::class) {
             EditProfileViewModel(schedulerProvider, compositeDisposable, networkHelper)
         }).get(EditProfileViewModel::class.java)
@@ -101,7 +101,7 @@ class ActivityModule(private val activity: BaseActivity<*>) {
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper
-    ): MainSharedViewModel = ViewModelProviders.of(
+    ): MainSharedViewModel = ViewModelProvider(
         activity, ViewModelProviderFactory(MainSharedViewModel::class) {
             MainSharedViewModel(schedulerProvider, compositeDisposable, networkHelper)
         }).get(MainSharedViewModel::class.java)

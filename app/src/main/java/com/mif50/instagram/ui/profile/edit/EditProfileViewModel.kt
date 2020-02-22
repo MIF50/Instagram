@@ -11,7 +11,5 @@ class EditProfileViewModel (
     networkHelper: NetworkHelper
 ) : BaseViewModel(schedulerProvider, compositeDisposable, networkHelper) {
 
-    override fun onCreate() {
-
-    }
+    override fun onCreate() {}
 }

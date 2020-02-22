@@ -316,8 +316,7 @@ class Camera private constructor(builder: Builder) {
         fragment = builder.fragment
         compatFragment = builder.compatFragment
         dirName = builder.dirName
-        REQUEST_TAKE_PHOTO =
-            builder.REQUEST_TAKE_PHOTO
+        REQUEST_TAKE_PHOTO = builder.REQUEST_TAKE_PHOTO
         imageName = builder.imageName
         imageType = builder.imageType
         isCorrectOrientationRequired = builder.isCorrectOrientationRequired

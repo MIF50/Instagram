@@ -14,6 +14,6 @@ import dagger.Component
 interface ViewHolderComponent {
 
     fun inject(viewHolder: DummyItemViewHolder)
-//
+
     fun inject(viewHolder: PostItemViewHolder)
 }

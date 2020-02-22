@@ -1,13 +1,12 @@
 package com.mif50.instagram.di.module
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mif50.instagram.data.repository.*
 import com.mif50.instagram.di.TempDirectory
 import com.mif50.instagram.ui.base.BaseFragment
 import com.mif50.instagram.ui.dummies.DummiesAdapter
 import com.mif50.instagram.ui.dummies.DummiesViewModel
-import com.mif50.instagram.ui.dummies.DummyItemViewModel
 import com.mif50.instagram.ui.home.HomeViewModel
 import com.mif50.instagram.ui.home.posts.PostsAdapter
 import com.mif50.instagram.ui.main.MainSharedViewModel
@@ -36,7 +35,7 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         networkHelper: NetworkHelper,
         dummyRepository: DummyRepository
     ): DummiesViewModel =
-        ViewModelProviders.of(fragment,
+        ViewModelProvider(fragment,
             ViewModelProviderFactory(DummiesViewModel::class) {
                 DummiesViewModel(schedulerProvider, compositeDisposable, networkHelper, dummyRepository)
             }
@@ -55,7 +54,7 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         networkHelper: NetworkHelper,
         userRepository: UserRepository,
         postRepository: PostRepository
-    ): HomeViewModel = ViewModelProviders.of(
+    ): HomeViewModel = ViewModelProvider(
         fragment, ViewModelProviderFactory(HomeViewModel::class) {
             HomeViewModel(
                 schedulerProvider,
@@ -76,7 +75,7 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         networkHelper: NetworkHelper,
         userRepository: UserRepository,
         fetchInfoRepository: FetchInfoRepository
-    ): ProfileViewModel = ViewModelProviders.of(
+    ): ProfileViewModel = ViewModelProvider(
         fragment, ViewModelProviderFactory(ProfileViewModel::class) {
             ProfileViewModel(
                 schedulerProvider,
@@ -98,7 +97,7 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         postRepository: PostRepository,
         networkHelper: NetworkHelper,
         @TempDirectory directory: File
-    ): PhotoViewModel = ViewModelProviders.of(
+    ): PhotoViewModel = ViewModelProvider(
         fragment, ViewModelProviderFactory(PhotoViewModel::class) {
             PhotoViewModel(
                 schedulerProvider, compositeDisposable, userRepository,
@@ -123,7 +122,7 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper
-    ): MainSharedViewModel = ViewModelProviders.of(
+    ): MainSharedViewModel = ViewModelProvider(
         fragment.activity!!, ViewModelProviderFactory(MainSharedViewModel::class) {
             MainSharedViewModel(schedulerProvider, compositeDisposable, networkHelper)
         }).get(MainSharedViewModel::class.java)
