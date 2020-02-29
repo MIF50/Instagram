@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.mif50.instagram.R
 import com.mif50.instagram.di.component.ActivityComponent
 import com.mif50.instagram.ui.base.BaseActivity
-import com.mif50.instagram.ui.base.CustomProgress
+import com.mif50.instagram.ui.base.custom.CustomProgress
 import com.mif50.instagram.utils.common.LayoutRes
 
 @LayoutRes(layout = R.layout.activity_edit_profile)

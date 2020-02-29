@@ -12,5 +12,5 @@ class PostsAdapter (
 ) : BaseAdapter<Post, PostItemViewHolder>(parentLifecycle, posts) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= PostItemViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PostItemViewHolder(parent)
 }

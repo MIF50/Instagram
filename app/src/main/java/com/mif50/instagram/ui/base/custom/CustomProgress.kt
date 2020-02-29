@@ -1,8 +1,7 @@
-package com.mif50.instagram.ui.base
+package com.mif50.instagram.ui.base.custom
 
 import android.app.Dialog
 import android.content.Context
-import android.view.View
 import android.view.Window
 
 import android.widget.ProgressBar
@@ -45,7 +44,8 @@ class CustomProgress {
         val instance: CustomProgress
             get() {
                 if (customProgress == null) {
-                    customProgress = CustomProgress()
+                    customProgress =
+                        CustomProgress()
                 }
                 return customProgress!!
             }
