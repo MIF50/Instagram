@@ -8,7 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.mif50.instagram.R
 import com.mif50.instagram.data.model.Post
 import com.mif50.instagram.di.component.ViewHolderComponent
-import com.mif50.instagram.ui.base.BaseItemViewHolder
+import com.mif50.instagram.ui.base.adapter.BaseItemViewHolder
 import com.mif50.instagram.utils.common.GlideHelper
 import kotlinx.android.synthetic.main.item_view_post.view.*
 

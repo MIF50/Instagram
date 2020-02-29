@@ -1,4 +1,4 @@
-package com.mif50.instagram.ui.base
+package com.mif50.instagram.ui.base.adapter
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

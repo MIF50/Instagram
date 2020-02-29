@@ -1,4 +1,4 @@
-package com.mif50.instagram.ui.base
+package com.mif50.instagram.ui.base.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +18,8 @@ import com.mif50.instagram.utils.display.Toaster
 import javax.inject.Inject
 
 abstract class BaseItemViewHolder<T : Any, VM : BaseItemViewModel<T>>(
-    @LayoutRes layoutId: Int, parent: ViewGroup
+    @LayoutRes layoutId: Int,
+    parent: ViewGroup
 ) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layoutId, parent, false)),
     LifecycleOwner {
 

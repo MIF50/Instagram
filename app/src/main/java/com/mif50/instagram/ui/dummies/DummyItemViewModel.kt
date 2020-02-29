@@ -3,8 +3,7 @@ package com.mif50.instagram.ui.dummies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.mif50.instagram.data.model.Dummy
-import com.mif50.instagram.data.repository.DummyRepository
-import com.mif50.instagram.ui.base.BaseItemViewModel
+import com.mif50.instagram.ui.base.adapter.BaseItemViewModel
 import com.mif50.instagram.utils.common.Resource
 import com.mif50.instagram.utils.log.Logger
 import com.mif50.instagram.utils.network.NetworkHelper

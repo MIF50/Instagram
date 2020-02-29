@@ -3,7 +3,7 @@ package com.mif50.instagram.ui.home.posts
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import com.mif50.instagram.data.model.Post
-import com.mif50.instagram.ui.base.BaseAdapter
+import com.mif50.instagram.ui.base.adapter.BaseAdapter
 
 
 class PostsAdapter (

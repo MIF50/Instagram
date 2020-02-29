@@ -8,7 +8,7 @@ import com.mif50.instagram.data.model.Post
 import com.mif50.instagram.data.remote.Networking
 import com.mif50.instagram.data.repository.PostRepository
 import com.mif50.instagram.data.repository.UserRepository
-import com.mif50.instagram.ui.base.BaseItemViewModel
+import com.mif50.instagram.ui.base.adapter.BaseItemViewModel
 import com.mif50.instagram.utils.common.Resource
 import com.mif50.instagram.utils.common.TimeUtils
 import com.mif50.instagram.utils.display.ScreenUtils
