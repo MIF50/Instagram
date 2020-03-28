@@ -23,9 +23,7 @@ class PostRepository @Inject constructor(
                 userId = user.id,
                 accessToken = user.accessToken
             )
-            .map {
-                it.data
-            }
+            .map { it.data }
     }
 
     fun makeLikePost(post: Post, user: User): Single<Post> {

@@ -22,7 +22,7 @@ class HomeViewModel (
     private val allPostList: ArrayList<Post>,
     private val paginator: PublishProcessor<Pair<String?, String?>>
 ) : BaseViewModel(schedulerProvider,compositeDisposable, networkHelper) {
-
+    // LiveData
     val loading: MutableLiveData<Boolean> = MutableLiveData()
     var posts: MutableLiveData<Resource<List<Post>>> = MutableLiveData()
     val refreshPosts: MutableLiveData<Resource<List<Post>>> = MutableLiveData()

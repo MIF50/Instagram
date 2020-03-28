@@ -22,26 +22,40 @@ class PostItemViewHolder (parent: ViewGroup):
 
     override fun setupObservers() {
         super.setupObservers()
-
-
-        viewModel.name.observe(this, Observer {
+        updateName()
+        updateTime()
+        updateLikesCount()
+        updateImageLike()
+        updateProfileImage()
+        updateImageDetail()
+    }
+    private fun updateName(){
+        viewModel.nameLiveData.observe(this, Observer {
             itemView.tvName.text = it
         })
+    }
 
-        viewModel.postTime.observe(this, Observer {
+    private fun updateTime(){
+        viewModel.postTimeLiveData.observe(this, Observer {
             itemView.tvTime.text = it
         })
+    }
 
-        viewModel.likesCount.observe(this, Observer {
+    private fun updateLikesCount(){
+        viewModel.likesCountLiveData.observe(this, Observer {
             itemView.tvLikesCount.text = itemView.context.getString(R.string.post_like_label,it)
         })
+    }
 
-        viewModel.isLiked.observe(this, Observer {
+    private fun updateImageLike(){
+        viewModel.isLikedLiveData.observe(this, Observer {
             if (it) itemView.ivLike.setImageResource(R.drawable.ic_heart_selected)
             else itemView.ivLike.setImageResource(R.drawable.ic_heart_unselected)
         })
+    }
 
-        viewModel.profileImage.observe(this, Observer {
+    private fun updateProfileImage(){
+        viewModel.profileImageLiveData.observe(this, Observer {
             it?.run {
                 val glideRequest = Glide
                     .with(itemView.ivProfile.context)
@@ -64,8 +78,10 @@ class PostItemViewHolder (parent: ViewGroup):
                 glideRequest.into(itemView.ivProfile)
             }
         })
+    }
 
-        viewModel.imageDetail.observe(this, Observer {
+    private fun updateImageDetail(){
+        viewModel.imageDetailLiveData.observe(this, Observer {
             it?.run {
                 val glideRequest = Glide
                     .with(itemView.ivPost.context)
@@ -86,8 +102,11 @@ class PostItemViewHolder (parent: ViewGroup):
     }
 
     override fun setupView(view: View) {
-        itemView.ivLike.setOnClickListener { viewModel.onLikeClick() }
+        onLikeTapped()
+    }
 
+    private fun onLikeTapped(){
+        itemView.ivLike.setOnClickListener { viewModel.onLikeClick() }
     }
 
 }

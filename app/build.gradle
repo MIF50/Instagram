@@ -76,7 +76,7 @@ dependencies {
 
     // Database
 
-    def room_version = '2.2.4'
+    def room_version = '2.2.5'
     def debug_db_version = '1.0.6'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

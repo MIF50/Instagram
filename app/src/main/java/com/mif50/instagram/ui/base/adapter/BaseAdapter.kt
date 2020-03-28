@@ -89,11 +89,13 @@ abstract class BaseAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseItemViewM
         val oldCount = itemCount
         this.dataList.addAll(dataList)
         val currentCount = itemCount
-        if (oldCount == 0 && currentCount > 0)
+        if (oldCount == 0 && currentCount > 0) {
             notifyDataSetChanged()
+        }
         // oldCount > 0 && currentCount > oldCount =====  oldCount in 1 until currentCount
-        else if (oldCount in 1 until currentCount)
+        else if (oldCount in 1 until currentCount) {
             notifyItemRangeChanged(oldCount - 1, currentCount - oldCount)
+        }
     }
 
     fun updateList(list: List<T>) {

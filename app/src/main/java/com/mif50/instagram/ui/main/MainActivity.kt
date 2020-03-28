@@ -30,6 +30,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
+        navigationBottomTapped()
+    }
+
+    private fun navigationBottomTapped(){
         bottomNavigation.run {
             itemIconTintList = null
             setOnNavigationItemSelectedListener {
@@ -55,22 +59,35 @@ class MainActivity : BaseActivity<MainViewModel>() {
     override fun setupObservers() {
         super.setupObservers()
 
+        observerHome()
+        observerProfile()
+        observerAddPhoto()
+        observerHomeRedirection()
+
+    }
+
+    private fun observerHome(){
         viewModel.homeNavigation.observe(this, Observer {
             it.getIfNotHandled()?.run { showHome() }
         })
+    }
 
+    private fun observerProfile(){
         viewModel.profileNavigation.observe(this, Observer {
             it.getIfNotHandled()?.run { showProfile() }
         })
+    }
 
+    private fun observerAddPhoto(){
         viewModel.photoNavigation.observe(this, Observer {
             it.getIfNotHandled()?.run { showAddPhoto() }
         })
+    }
 
+    private fun observerHomeRedirection(){
         mainSharedViewModel.homeRedirection.observe(this, Observer {
             it.getIfNotHandled()?.run { bottomNavigation.selectedItemId = R.id.itemHome }
         })
-
     }
 
     private fun showHome() {

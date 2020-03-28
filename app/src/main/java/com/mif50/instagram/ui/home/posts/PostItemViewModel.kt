@@ -31,6 +31,8 @@ class PostItemViewModel @Inject constructor(
         const val  TAG = "PostItemViewModel"
     }
 
+    override fun onCreate() {}
+
     private val user = userRepository.getCurrentUser()!!
     private val screenWidth = ScreenUtils.getScreenWidth()
     private val screenHeight = ScreenUtils.getScreenHeight()
@@ -40,54 +42,54 @@ class PostItemViewModel @Inject constructor(
         Pair(Networking.HEADER_USER_ID, user.id),
         Pair(Networking.HEADER_ACCESS_TOKEN, user.accessToken)
     )
-
-    val name: LiveData<String> = Transformations.map(data){ it.creator.name}
-    val postTime: LiveData<String> = Transformations.map(data) { TimeUtils.getTimeAgo(date = it.createdAt)}
-    val likesCount: LiveData<Int> = Transformations.map(data) {it.likedBy?.size ?: 0}
-    val isLiked: LiveData<Boolean> = Transformations.map(data) {
+    // LiveData
+    val nameLiveData: LiveData<String> = Transformations.map(data){ it.creator.name}
+    val postTimeLiveData: LiveData<String> = Transformations.map(data) { TimeUtils.getTimeAgo(date = it.createdAt)}
+    val likesCountLiveData: LiveData<Int> = Transformations.map(data) {it.likedBy?.size ?: 0}
+    val isLikedLiveData: LiveData<Boolean> = Transformations.map(data) {
         it.likedBy?.find { postUse -> postUse.id == user.id} !== null
     }
 
-    val profileImage: LiveData<Image> = Transformations.map(data) {
+    val profileImageLiveData: LiveData<Image> = Transformations.map(data) {
         it.creator.profilePicUrl?.run {  Image(this,headers)}
     }
 
-    val imageDetail: LiveData<Image> = Transformations.map(data) {
-        Image(
-            it.imageUrl,
-            headers,
-            screenWidth,
-            it.imageHeight?.let { height ->
-                return@let (calculateScaleFactor(it) * height).toInt()
-            } ?: screenHeight / 3
-        )
+    val imageDetailLiveData: LiveData<Image> = Transformations.map(data) {
+        Image(it.imageUrl, headers, screenWidth, calculateHeight(it))
     }
 
-    private fun calculateScaleFactor(post: Post) = post.imageWidth?.let { return@let screenWidth.toFloat() / it } ?: 1f
+    private fun calculateHeight(post:Post): Int{
+        return post.imageHeight?.let { height ->
+            return@let (calculateScaleFactor(post) *  height).toInt()
+        } ?: screenHeight / 3
+    }
 
-
-    override fun onCreate() { }
+    private fun calculateScaleFactor(post: Post) = post.imageWidth?.let {imageWidth -> return@let screenWidth.toFloat() / imageWidth } ?: 1f
 
     fun onLikeClick() = data.value?.let {
         if (networkHelper.isNetworkConnected()) {
-            val api =
-                if (isLiked.value == true)
-                    postRepository.makeUnlikePost(it, user)
-            else
-                    postRepository.makeLikePost(it,user)
-
-            compositeDisposable.add(
-                api.subscribeOn(schedulerProvider.io())
-                    .subscribe(
-                        { responsePost ->
-                            if (responsePost.id == it.id) updateData(responsePost)
-                        },{error ->
-                            handleNetworkError(error)
-                        }
-                    )
-            )
+          callLikeOrUnLikeApi(it)
         } else {
-            messageStringId.postValue(Resource.error((R.string.network_connection_error)))
+            noInternetConnection()
         }
+    }
+
+    private fun callLikeOrUnLikeApi(post: Post){
+        val api = if(isLikedLiveData.value == true) postRepository.makeUnlikePost(post, user) else postRepository.makeLikePost(post,user)
+
+        compositeDisposable.add(
+            api.subscribeOn(schedulerProvider.io())
+                .subscribe(
+                    { responsePost ->
+                        if (responsePost.id == post.id) updateData(responsePost)
+                    } , { error ->
+                        handleNetworkError(error)
+                    }
+                )
+        )
+    }
+
+    private fun noInternetConnection(){
+        messageStringId.postValue(Resource.error((R.string.network_connection_error)))
     }
 }
