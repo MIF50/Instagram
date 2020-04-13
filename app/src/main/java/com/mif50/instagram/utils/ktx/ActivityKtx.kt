@@ -57,4 +57,4 @@ inline fun <reified T: Any> Activity.startActivityForResult(data: Intent, reques
     startActivityForResult(Intent(this, T::class.java).putExtras(data), requestCode)
 }
 
-fun Intent.addClearFlags() = this.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)!!
+fun Intent.addClearFlags() = this.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)

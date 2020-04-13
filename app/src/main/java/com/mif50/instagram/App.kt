@@ -22,4 +22,9 @@ class App: Application() {
             .build()
         applicationComponent.inject(this)
     }
+
+    // Needed to replace the component with a test specific one
+    fun setComponent(applicationComponent:ApplicationComponent){
+        this.applicationComponent = applicationComponent
+    }
 }

@@ -21,7 +21,7 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: App) {
+class ApplicationModuleTest (private val application: App){
 
     @Provides
     @Singleton
