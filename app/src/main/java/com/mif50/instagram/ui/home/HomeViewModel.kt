@@ -55,7 +55,7 @@ class HomeViewModel (
                 .concatMapSingle { pageIds ->
                     return@concatMapSingle  postRepository
                         .fetchHomePostList(pageIds.first, pageIds.second, user)
-                        .subscribeOn(Schedulers.io())
+                        .subscribeOn(schedulerProvider.io())
                         .doOnError { handleNetworkError(it) }
 
                 }

@@ -1,6 +1,5 @@
 package com.mif50.instagram.data.repository
 
-import com.mif50.instagram.data.local.db.DatabaseService
 import com.mif50.instagram.data.model.Post
 import com.mif50.instagram.data.model.User
 import com.mif50.instagram.data.remote.NetworkService
@@ -10,8 +9,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class PostRepository @Inject constructor(
-    private val networkService: NetworkService,
-    private val databaseService: DatabaseService
+    private val networkService: NetworkService
 ) {
 
 
@@ -61,7 +59,6 @@ class PostRepository @Inject constructor(
                 return@map post
             }
     }
-
 
     fun createPost(imgUrl: String, imgWidth: Int, imgHeight: Int, user: User): Single<Post> =
         networkService.doPostCreationCall(

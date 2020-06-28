@@ -35,7 +35,7 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
     }
 
     private fun observerMainScreen(){
-        viewModel.launchMain.observe(this, Observer<Event<Map<String, String>>> {
+        viewModel.launchMain.observe(this, Observer {
             it.getIfNotHandled()?.run {
                 Handler().postDelayed({ startActivity<MainActivity>() },1000)
             }
@@ -43,7 +43,7 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
     }
 
     private fun observerLoginScreen(){
-        viewModel.launchLogin.observe(this, Observer<Event<Map<String,String>>> {
+        viewModel.launchLogin.observe(this, Observer {
             it.getIfNotHandled()?.run {
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
             }
